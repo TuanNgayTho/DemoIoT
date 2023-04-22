@@ -7,13 +7,23 @@
 </head>
 <body>
 <div class="container p-5 my-5 bg-dark text-white">
-    <h1 id="jokes">{{ text }}</h1>
+    <h1 id="jokes"></h1>
+</div>
+<div class="container p-5 my-5 bg-dark text-white">
+    <h1 id="mqtt"></h1>
 </div>
 <script>
-    var socket = new WebSocket('ws://localhost:8000/ws/jokes/');
+    var socket = new WebSocket('ws://localhost:8000/ws/Led/');
     socket.onmessage = function(event){
     var joke = event.data;
+    console.log("Message from server ", event.data);
     document.querySelector('#jokes').innerText = joke;
+    }
+    var socket = new WebSocket('ws://localhost:8000/ws/Mqtt/');
+    socket.onmessage = function(event){
+    var mqtt = event.data;
+    console.log("Message from server ", event.data);
+    document.querySelector('#mqtt').innerText = mqtt;
     }
 </script>
 </body>

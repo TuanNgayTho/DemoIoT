@@ -1,4 +1,4 @@
 pip install -r requirements.txt
-celery -A jokes_project beat -l INFO
-celery -A jokes_project worker --pool=solo -l info
+celery -A Led_project beat -l INFO
+celery -A Led_project worker --pool=solo -l info
 Python .\manage.py runserver
