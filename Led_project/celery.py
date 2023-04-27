@@ -14,7 +14,7 @@ app.conf.beat_schedule = {
     },
     'get_mqtt_3s': {
             'task': 'Led.tasks.mpqtt_message',
-            'schedule': 2.0
+            'schedule': 60.0
         }
 }
 

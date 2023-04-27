@@ -3,15 +3,10 @@ from celery import shared_task
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 import paho.mqtt.client as mqtt
-import time
+from ClassMqtt import ClassMqtt
+import threading
 
 channel_layer = get_channel_layer()
-mqttBroker = '103.184.113.154'
-client =  mqtt.Client("led")
-client.connect(mqttBroker)
-client.subscribe('abc')
-
-
 
 @shared_task
 def get_joke():
@@ -19,20 +14,31 @@ def get_joke():
     responce = requests.get(url).json()
     joke = responce["value"]
     async_to_sync(channel_layer.group_send)('Led', {'type': 'send_jokes','text': joke} )
-
+    # async_to_sync(channel_layer.group_send)('Mqtt', {'type': 'send_mqtt', 'text': mqtt_message})
 @shared_task
 def mpqtt_message():
-    def on_message(client, user, message):
-        mqtt_message = str(message.payload.decode("utf-8"))
-        print('Received message:', mqtt_message)
-        async_to_sync(channel_layer.group_send)('Mqtt', {'type': 'send_mqtt', 'text': mqtt_message})
+    class MyMQTTClass(mqtt.Client):
 
-    mqttBroker = '103.184.113.154'
-    client = mqtt.Client("led")
-    client.connect(mqttBroker)
-    client.subscribe('Test')
+        def on_connect(self, mqttc, obj, flags, rc):
+            print("rc: " + str(rc))
 
-    client.loop_start()
-    client.on_message = on_message
-    time.sleep(30)
-    client.loop_stop()
+        def on_connect_fail(self, mqttc, obj):
+            print("Connect failed")
+
+        def on_message(self, mqttc, obj, msg):
+            print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
+            mqtt_message = str(msg.payload)
+            async_to_sync(channel_layer.group_send)('Mqtt', {'type': 'send_mqtt', 'text': mqtt_message})
+
+        def run(self):
+            self.connect("103.184.113.154", 1883, 60)
+            self.subscribe("Test", 0)
+
+            rc = 0
+            while rc == 0:
+                rc = self.loop()
+            return rc
+
+    mqttc = MyMQTTClass()
+    p1 = threading.Thread(target=mqttc.run, daemon= True, args=())
+    p1.start()
