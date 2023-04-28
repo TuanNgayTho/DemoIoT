@@ -1,4 +1,5 @@
 from channels.generic.websocket import AsyncWebsocketConsumer
+import json
 
 class JokesConsumer(AsyncWebsocketConsumer):
     async def connect(self):
@@ -24,4 +25,4 @@ class MqttConsumer(AsyncWebsocketConsumer):
 
     async def send_mqtt(self,event):
         text_message = event['text']
-        await self.send(text_message)
+        await self.send(json.dumps(text_message))
