@@ -33,7 +33,7 @@ def mpqtt_message():
             status = 0
 
         def on_message(self, mqttc, obj, msg):
-            print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
+            print(msg.topic + " " + str(msg.qos) + " " + str(json.loads(msg.payload)))
             # mqtt_message = json.loads(msg.payload)
             # text = str(msg.payload)
             text = json.loads(msg.payload)
@@ -50,5 +50,5 @@ def mpqtt_message():
     if status == 0:
         mqttc = MyMQTTClass()
         # if __name__ == '__main__':
-        p1 = threading.Thread(target=mqttc.run, daemon= False, args=())
+        p1 = threading.Thread(target=mqttc.run, daemon= True, args=())
         p1.start()
