@@ -33,7 +33,7 @@ def mpqtt_message():
             status = 0
 
         def on_message(self, mqttc, obj, msg):
-            print(msg.topic + " " + str(msg.qos) + " " + str(json.loads(msg.payload)))
+            # print(msg.topic + " " + str(msg.qos) + " " + str(json.loads(msg.payload)))
             # mqtt_message = json.loads(msg.payload)
             # text = str(msg.payload)
             text = json.loads(msg.payload)
