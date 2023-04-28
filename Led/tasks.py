@@ -37,7 +37,7 @@ def mpqtt_message():
             # mqtt_message = json.loads(msg.payload)
             # text = str(msg.payload)
             text = json.loads(msg.payload)
-            async_to_sync(channel_layer.group_send)('Mqtt', {'type': 'send_mqtt', 'text': text})
+            async_to_sync(channel_layer.group_send)('Mqtt', {'type': 'send_mqtt', 'text': text['d']})
 
         def run(self):
             self.connect("103.184.113.154", 1883, 60)
