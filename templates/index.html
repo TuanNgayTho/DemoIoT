@@ -15,9 +15,14 @@
 <div class="container p-5 my-5 bg-dark text-white">
     <h1 id="ItemValue1"></h1>
 </div>
-
 <div class="container p-5 my-5 bg-dark text-white">
     <h1 id="ItemValue2"></h1>
+</div>
+<div class="container p-5 my-5 bg-dark text-white">
+    <h1 id="ItemValue3"></h1>
+</div>
+<div class="container p-5 my-5 bg-dark text-white">
+    <h1 id="ItemValue4"></h1>
 </div>
 <script>
     var socket = new WebSocket('ws://localhost:8000/ws/Led/');
@@ -36,6 +41,7 @@
     const massage = JSON.parse(mqtt)
     for (let x in massage) {
         console.log(massage[x]);
+        document.querySelector('#'+x).innerText = massage[x];
         }
     }
 </script>
