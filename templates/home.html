@@ -18,25 +18,12 @@
 <div class="container p-5 my-5 bg-dark text-white">
     <h1 id="ItemValue4"></h1>
 </div>
-<!--<script>-->
-<!--    var socket = new WebSocket('ws://localhost:8000/ws/Led/');-->
-<!--    socket.onmessage = function(event){-->
-<!--    var joke = event.data;-->
-<!--    console.log("Message from server ", event.data);-->
-<!--    document.querySelector('#jokes').innerText = joke;-->
-<!--    }-->
 
-<!--    var socket = new WebSocket('ws://localhost:8000/ws/Mqtt/');-->
-<!--    socket.onmessage = function(event){-->
-<!--    const mqtt = event.data;-->
-<!--    console.log(event.data);-->
-<!--    document.querySelector('#mqtt').innerText = mqtt;-->
+<h1 id="app"></h1>
+<div class="chart-container" style="position: relative; height:40vh; width:80vw">
+  <canvas id="myChart"></canvas>
+</div>
 
-<!--    const massage = JSON.parse(mqtt)-->
-<!--    for (let x in massage) {-->
-<!--        console.log(massage[x]);-->
-<!--        document.querySelector('#'+x).innerText = massage[x];-->
-<!--        }-->
-<!--    }-->
-<!--</script>-->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %}
