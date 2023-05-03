@@ -1,0 +1,83 @@
+header, footer, nav
+{
+    display: block;
+}
+nav
+{
+    max-width: 100%;
+    margin: 0;
+}
+body
+{
+    font-family:Roboto, Lucida Grande, DejaVu Sans, Bitstream Vera Sans;
+    line-height: 01;
+    margin: 0;
+}
+
+ul.globalmenu
+{
+    margin: 0;
+    padding: 0;
+    background-color: #66ccff;
+    overflow: hidden;
+    font-size: 20px;
+}
+ul.globalmenu li
+{
+    list-style: none;
+    float: left;
+}
+ul.globalmenu li.alignright
+{
+    float: right;
+}
+ul.globalmenu li a
+{
+    text-decoration: none;
+    color: white;
+    padding: 13px;
+    min-height: 16px;
+    display: block;
+    text-transform: uppercase;
+}
+
+ul.globalmenu li a:hover
+{
+    background-color: aliceblue;
+    color: black;
+}
+ul.globalmenu li.dropdownicon
+{
+    display: none;
+}
+/*custom styles navigation*/
+
+/*mobile*/
+@media screen and (max-width:600px)
+{
+    ul.globalmenu li:not(:nth-child(1))
+    {
+        display: none;
+    }
+    ul.globalmenu li.dropdownicon
+    {
+        display: block;
+        float: right;
+    }
+    ul.globalmenu.tuan li.dropdownicon
+    {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    ul.globalmenu.tuan
+    {
+        position: relative;
+    }
+    ul.globalmenu.tuan li
+    {
+        display: inline;
+        float: none;
+        text-align: left;
+    }
+}

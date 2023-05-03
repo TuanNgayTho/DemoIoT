@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+<!--{% block title %} Đăng Nhập {% endblock %}-->
+{% block Login %}
+<div class="">
+    <div class="container w-100 mt-5 p-5">
+        <div class="row justify-content-center border rounded-4 shadow p-2">
+            <div class="col-sm-6">
+                <div class="d-flex justify-content-center mt-4 shadow p-1">
+                    <div class="p-2"><img src="static/images/logoTMK.png" class="img-fluid mx-auto d-block" alt="Cinque Terre"
+                              width="60" height="55"></div>
+                    <div class="text-center text-info fs-2 mt-3 p-1">TMK WEBAPP</div>
+
+                </div>
+                <img src="static/images/login.png" class="img-fluid mx-auto mt-5" alt="Cinque Terre" width="600" height="550">
+                <hr class="d-sm-none">
+            </div>
+            <div class="col-sm-6">
+                <div class="border-start">
+                    <div class="container mt-4 mb-3">
+                        <div><p class="text-center text-info fs-2 mt-2 shadow p-4">ĐĂNG NHẬP</p></div>
+                        <img src="static/images/login3.png" class="img-fluid mx-auto d-block mt-5" alt="Cinque Terre" width="190"
+                             height="130">
+                        <form action="{% url 'loginpage:login' %}" method="post" class="fs-4">
+                            {% csrf_token %}
+<!--                            {{ form.as_p }}-->
+                            <div class="mb-3 mt-5 ">
+                                <label for="taikhoan">Tài khoản:</label>
+                                <input type="text" class="form-control fs-4 mt-2" id="taikhoan"
+                                       placeholder="Vùi lòng nhập tài khoản"
+                                       name="username">
+                            </div>
+                            <div class="mb-4">
+                                <label for="pwd">Mật khẩu:</label>
+                                <input type="password" class="form-control fs-4 mt-2" id="pwd"
+                                       placeholder="Vui lòng nhập mật khẩu"
+                                       name="password">
+                            </div>
+
+                            {% for message in messages %}
+                                <p class="alert alert-warning">{{ message }}</p>
+                            {% endfor %}
+
+                            <div class="form-check mb-3">
+                                <label class="form-check-label">
+                                    <input class="form-check-input mt-0" type="checkbox" name="remember"> Nhớ tài khoản
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-info fs-4 shadow border">Đăng nhập</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-5 p-4 bg-dark text-white text-center" id="page-bottom">
+    <p class="">CÔNG TY TNHH KỸ THUẬT TMK</p>
+    <p class="">MST: 0313 011 680</p>
+    <p class="">Địa chỉ đăng ký: 76/89A Phan Tây Hồ, Phường 7, Quận Phú Nhuận, TP. HCM</p>
+    <p class="">Địa Chỉ giao dịch: 112 Đường 18B, P. Bình Hưng Hòa A, Quận Bình Tân, TP. HCM</p>
+    <p class="">Phone: 0909 167 148</p>
+    <p class="">Email: tmktek@gmail.com</p>
+</div>
+{% endblock %}
