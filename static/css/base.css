@@ -53,7 +53,7 @@ ul.globalmenu li.dropdownicon
 /*custom styles navigation*/
 
 /*mobile*/
-@media screen and (max-width:600px)
+@media screen and (max-width:930px)
 {
     ul.globalmenu li:not(:nth-child(1))
     {
@@ -63,12 +63,14 @@ ul.globalmenu li.dropdownicon
     {
         display: block;
         float: right;
+        color:white;
     }
     ul.globalmenu.tuan li.dropdownicon
     {
         position: absolute;
         top: 0;
         right: 0;
+        color:black;
     }
     ul.globalmenu.tuan
     {

@@ -33,15 +33,16 @@ def mpqtt_message():
             status = 0
 
         def on_message(self, mqttc, obj, msg):
-            # print(msg.topic + " " + str(msg.qos) + " " + str(json.loads(msg.payload)))
+            print(msg.topic + " " + str(msg.qos) + " " + str(json.loads(msg.payload)))
             # mqtt_message = json.loads(msg.payload)
-            # text = str(msg.payload)
-            text = json.loads(msg.payload)
-            async_to_sync(channel_layer.group_send)('Mqtt', {'type': 'send_mqtt', 'text': text['d']})
+            if msg.topic == 'Test':
+                text = json.loads(msg.payload)
+                async_to_sync(channel_layer.group_send)('Mqtt', {'type': 'send_mqtt', 'text': text['d']})
 
         def run(self):
+            Toppic = [("Test", 0),("Test1", 0)]
             self.connect("103.184.113.154", 1883, 60)
-            self.subscribe("Test", 0)
+            self.subscribe(Toppic)
 
             rc = 0
             while rc == 0:

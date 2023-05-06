@@ -1,29 +1,122 @@
 {% extends 'base.html' %}
 {% block Home %}
-<div class="container p-5 my-5 bg-dark text-white">
+<div class="container pt-5 ">
+    <h1 id="app"></h1>
+</div>
+<div class="row mx-0">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+
+    </div>
+</div>
+<div class="row m-2">
+    <div class="col-md-8">
+        <div class="card p-3 mb-3" style="height:516px">
+            <div class="d-flex justify-content-between">
+                <h4>Deals Analytics</h4>
+                <div>
+                    <input onchange="filterData()" type="date" id="startdate">
+                    <input onchange="filterData()" type="date" id="enddate">
+                </div>
+            </div>
+            <hr>
+            <canvas class="chart-container" style="position: relative; height:100%; width:100%" id="myChart1"></canvas>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-3 mb-3" style="height:161.3px">
+            <h4>Deals Analytics</h4>
+            <hr>
+        </div>
+        <div class="card p-3 mb-3" style="height:161.3px">
+            <h4>Deals Analytics</h4>
+            <hr>
+        </div>
+        <div class="card p-3 mb-3" style="height:161.3px">
+            <h4>Deals Analytics</h4>
+            <hr>
+        </div>
+    </div>
+</div>
+<div class="row m-2">
+    <div class="col-md-4 mb-3">
+        <div class="d-flex justify-content-center">
+            <div class="card" style="height:300px; width:100%">
+                <div class="card-body" style="position: relative; height:100%; width:100%">
+                    <input class="switch" type="checkbox" id="switch1" onclick="bulbToggle()"/><label class="switchlb"
+                                                                                                      for="switch1">Toggle</label>
+                    <img src="static/images/lightoff.jpg" class="img-fluid mx-auto d-block mt-5" alt="Cinque Terre"
+                         width="50" height="80" id="lightbulb">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="d-flex justify-content-center">
+            <div class="card" style="height:300px; width:100%">
+                <div class="card-body" style="position: relative; height:100%; width:100%">
+                    <input class="switch" type="checkbox" id="switch2" onclick="bulbToggle()"/><label class="switchlb"
+                                                                                                      for="switch2">Toggle</label>
+                    <img src="static/images/lightoff.jpg" class="img-fluid mx-auto d-block mt-5" alt="Cinque Terre"
+                         width="50" height="80">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="d-flex justify-content-center">
+            <div class="card" style="height:300px; width:100%">
+                <div class="card-body" style="position: relative; height:100%; width:100%">
+                    <canvas class="chart-container" style="position: relative; height:100%; width:100%" id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="frame">
+    <button class="custom-btn btn-1">Read More</button>
+    <button class="custom-btn btn-2">Read More</button>
+    <button class="custom-btn btn-3"><span>Read More</span></button>
+    <button class="custom-btn btn-4"><span>Read More</span></button>
+    <button class="custom-btn btn-5"><span>Read More</span></button>
+    <button class="custom-btn btn-6"><span>Read More</span></button>
+    <button class="custom-btn btn-7"><span>Read More</span></button>
+    <button class="custom-btn btn-8"><span>Read More</span></button>
+    <button class="custom-btn btn-9">Read More</button>
+    <button class="custom-btn btn-10">Read More</button>
+    <button class="custom-btn btn-11">Read More
+        <div class="dot"></div>
+    </button>
+    <button class="custom-btn btn-12"><span>Click!</span><span>Read More</span></button>
+    <button class="custom-btn btn-13">Read More</button>
+    <button class="custom-btn btn-14">Read More</button>
+    <button class="custom-btn btn-15">Read More</button>
+    <button class="custom-btn btn-16">Read More</button>
+</div>
+<div class="container p-5 my-5 text-white">
     <h1 id="jokes"></h1>
 </div>
-<div class="container p-5 my-5 bg-dark text-white">
+<div class="container p-5 my-5 text-white">
     <h1 id="mqtt"></h1>
 </div>
-<div class="container p-5 my-5 bg-dark text-white">
+<div class="container p-5 my-5 text-white">
     <h1 id="ItemValue1"></h1>
 </div>
-<div class="container p-5 my-5 bg-dark text-white">
+<div class="container p-5 my-5text-white">
     <h1 id="ItemValue2"></h1>
 </div>
-<div class="container p-5 my-5 bg-dark text-white">
+<div class="container p-5 my-5 text-white">
     <h1 id="ItemValue3"></h1>
 </div>
-<div class="container p-5 my-5 bg-dark text-white">
+<div class="container p-5 my-5 text-white">
     <h1 id="ItemValue4"></h1>
 </div>
-
-<h1 id="app"></h1>
-<div class="chart-container" style="position: relative; height:40vh; width:80vw">
-  <canvas id="myChart"></canvas>
-</div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %}
