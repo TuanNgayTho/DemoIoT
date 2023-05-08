@@ -1,27 +1,13 @@
 {% extends 'base.html' %}
 {% block Home %}
-<div class="container pt-5 ">
-    <h1 id="app"></h1>
-</div>
-<div class="row mx-0">
-    <div class="col-md-4">
-
-    </div>
-    <div class="col-md-4">
-
-    </div>
-    <div class="col-md-4">
-
-    </div>
-</div>
-<div class="row m-2">
+<div class="row m-2 pt-5">
     <div class="col-md-8">
         <div class="card p-3 mb-3" style="height:516px">
             <div class="d-flex justify-content-between">
-                <h4>Deals Analytics</h4>
+                <h4>Bảng Thống Kê</h4>
                 <div>
-                    <input onchange="filterData()" type="date" id="startdate">
-                    <input onchange="filterData()" type="date" id="enddate">
+                    <input onchange="filterData()" type="date" id="startdate" value="2023-05-08">
+                    <input class="mt-1" onchange="filterData()" type="date" id="enddate" value="2023-05-14">
                 </div>
             </div>
             <hr>
@@ -31,16 +17,34 @@
 
     <div class="col-md-4">
         <div class="card p-3 mb-3" style="height:161.3px">
-            <h4>Deals Analytics</h4>
+            <h4>Nhiệt Độ</h4>
             <hr>
+            <div class="d-flex justify-content-between">
+                <h2 id="nhietdo"></h2>
+                <div style="font-size: 2.4em;">
+                    <ion-icon name="sunny-outline"></ion-icon>
+                </div>
+            </div>
         </div>
         <div class="card p-3 mb-3" style="height:161.3px">
-            <h4>Deals Analytics</h4>
+            <h4>Độ Ẩm</h4>
             <hr>
+            <div class="d-flex justify-content-between">
+                <h2 id="doam"></h2>
+                <div style="font-size: 2em;">
+                    <ion-icon name="water-outline"></ion-icon>
+                </div>
+            </div>
         </div>
         <div class="card p-3 mb-3" style="height:161.3px">
-            <h4>Deals Analytics</h4>
+            <h4>Tên Thiết bị</h4>
             <hr>
+            <div class="d-flex justify-content-between">
+                <h4 id="textbox"></h4>
+                <div style="font-size: 1.8em;">
+                    <ion-icon name="desktop-outline"></ion-icon>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -49,6 +53,8 @@
         <div class="d-flex justify-content-center">
             <div class="card" style="height:300px; width:100%">
                 <div class="card-body" style="position: relative; height:100%; width:100%">
+                    <h4>Bảng Điều Khiển</h4>
+                    <hr>
                     <input class="switch" type="checkbox" id="switch1" onclick="bulbToggle()"/><label class="switchlb"
                                                                                                       for="switch1">Toggle</label>
                     <img src="static/images/lightoff.jpg" class="img-fluid mx-auto d-block mt-5" alt="Cinque Terre"
@@ -61,8 +67,15 @@
         <div class="d-flex justify-content-center">
             <div class="card" style="height:300px; width:100%">
                 <div class="card-body" style="position: relative; height:100%; width:100%">
-                    <input class="switch" type="checkbox" id="switch2" onclick="bulbToggle()"/><label class="switchlb"
-                                                                                                      for="switch2">Toggle</label>
+                    <h4>Bảng Điều Khiển</h4>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <button class="custom-btn btn-4"><span>Bật</span></button>
+                            <button class="custom-btn btn-5"><span>Tắt</span></button>
+                        </div>
+                        <div><input type="number" class="input-group mt-2" id="pwd" placeholder=" Timer(s)" name="timer"></div>
+                    </div>
                     <img src="static/images/lightoff.jpg" class="img-fluid mx-auto d-block mt-5" alt="Cinque Terre"
                          width="50" height="80">
                 </div>
@@ -73,7 +86,9 @@
         <div class="d-flex justify-content-center">
             <div class="card" style="height:300px; width:100%">
                 <div class="card-body" style="position: relative; height:100%; width:100%">
-                    <canvas class="chart-container" style="position: relative; height:100%; width:100%" id="myChart"></canvas>
+                    <h4>Biểu Đồ</h4>
+                    <hr>
+                    <canvas class="chart-container" style="position: relative; height:80%; width:100%" id="myChart"></canvas>
                 </div>
             </div>
         </div>
@@ -99,22 +114,22 @@
     <button class="custom-btn btn-15">Read More</button>
     <button class="custom-btn btn-16">Read More</button>
 </div>
-<div class="container p-5 my-5 text-white">
+<div class="container p-5 my-5 bg-dark text-white">
     <h1 id="jokes"></h1>
 </div>
-<div class="container p-5 my-5 text-white">
+<div class="container p-5 my-5 bg-dark text-white">
     <h1 id="mqtt"></h1>
 </div>
-<div class="container p-5 my-5 text-white">
+<div class="container p-5 my-5 bg-dark text-white">
     <h1 id="ItemValue1"></h1>
 </div>
-<div class="container p-5 my-5text-white">
+<div class="container p-5 my-5 bg-dark text-white">
     <h1 id="ItemValue2"></h1>
 </div>
-<div class="container p-5 my-5 text-white">
+<div class="container p-5 my-5 bg-dark text-white">
     <h1 id="ItemValue3"></h1>
 </div>
-<div class="container p-5 my-5 text-white">
+<div class="container p-5 my-5 bg-dark text-white">
     <h1 id="ItemValue4"></h1>
 </div>
 

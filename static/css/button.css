@@ -7,7 +7,8 @@ body {
   text-align: center;
 }
 button {
-  margin: 20px;
+  margin: 2px;
+  font-family:Roboto, Lucida Grande, DejaVu Sans, Bitstream Vera Sans;
 }
 .custom-btn {
   width: 130px;
@@ -15,7 +16,6 @@ button {
   color: #fff;
   border-radius: 5px;
   padding: 10px 25px;
-  font-family: 'Lato', sans-serif;
   font-weight: 500;
   background: transparent;
   cursor: pointer;
@@ -67,7 +67,6 @@ background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
   line-height: 50px;
   padding: 0;
   border: none;
-  font-family:Roboto, Lucida Grande, DejaVu Sans, Bitstream Vera Sans;
 }
 .btn-3 span {
   position: relative;
