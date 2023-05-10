@@ -1,21 +1,46 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.views.generic import TemplateView
+from django.views.generic import View
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, JsonResponse
+import ClassMqtt
+import json
+from random import randint
+
 # Create your views here.
 def index(request):
     return render(request, 'login.html')
 
 
-class homepage(LoginView):
-    template_name = 'home.html'
+class homepage(View):
+    def get(self, request):
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            number = randint(1, 10)
+            return JsonResponse({'number': number})
+        return render(request, "home.html")
+
+    def post(seft, request):
+        data = json.loads(request.body)
+        float_number = float(data['number'])
+        print(float_number)
+        return JsonResponse({'float': f'you got: {float_number}'})
 
 
 @login_required(login_url="/login")
 def home(request):
-    return render(request, "home.html")
+    if request.method == "POST":
+        data = json.loads(request.body)
+        float_number = float(data['number'])
+        print(float_number, "tuan dep trai")
+        return JsonResponse({'float': f'you got: {float_number}'})
+    if request.method == "GET":
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            number = randint(1, 10)
+            return JsonResponse({'number': number})
+        return render(request, "home.html")
+    # return render(request, "home.html")
 
 
 def loginpage(request):

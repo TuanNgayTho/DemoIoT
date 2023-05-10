@@ -53,12 +53,12 @@
         <div class="d-flex justify-content-center">
             <div class="card" style="height:300px; width:100%">
                 <div class="card-body" style="position: relative; height:100%; width:100%">
-                    <h4>Bảng Điều Khiển</h4>
-                    <hr>
-                    <input class="switch" type="checkbox" id="switch1" onclick="bulbToggle()"/><label class="switchlb"
-                                                                                                      for="switch1">Toggle</label>
-                    <img src="static/images/lightoff.jpg" class="img-fluid mx-auto d-block mt-5" alt="Cinque Terre"
-                         width="50" height="80" id="lightbulb">
+                        <h4>Bảng Điều Khiển</h4>
+                        <hr>
+                        <input class="switch" type="submit" id="switch1" onclick="bulbToggle()" name="light"/><label class="switchlb"
+                                                                                                          for="switch1" >Toggle</label>
+                        <img src="static/images/lightoff.jpg" class="img-fluid mx-auto d-block mt-5" alt="Cinque Terre"
+                             width="50" height="80" id="lightbulb">
                 </div>
             </div>
         </div>
@@ -71,8 +71,9 @@
                     <hr>
                     <div class="d-flex justify-content-between">
                         <div>
-                            <button class="custom-btn btn-4"><span>Bật</span></button>
-                            <button class="custom-btn btn-5"><span>Tắt</span></button>
+                            {% csrf_token %}
+                            <button class="custom-btn btn-4" onclick="getNumber()"><span>Bật</span></button>
+                            <button class="custom-btn btn-5" onclick="getFloatNumber()"><span>Tắt</span></button>
                         </div>
                         <div><input type="number" class="input-group mt-2" id="pwd" placeholder=" Timer(s)" name="timer"></div>
                     </div>
