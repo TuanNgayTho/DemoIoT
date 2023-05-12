@@ -17,18 +17,18 @@ class ClassMqtt:
                 print(data[x])
 
     def publishmqtt(self, topicname, msg):
-        publish.single(topicname, payload=msg, qos=0, retain=False, hostname="103.184.113.154",
+        massage = {
+            "d":
+                msg,
+            "ts": ""
+        }
+        massageJson = json.dumps(massage)
+        publish.single(topicname, payload=massageJson, qos=0, retain=False, hostname="103.184.113.154",
                port=1883, client_id="", keepalive=60, will=None, auth=None, tls=None,
                protocol=mqtt.MQTTv311, transport="tcp")
 
-
-massage = {
-            "d":{
-            "ItemValue5":True
-            },"ts":""
-            }
-massageJson = json.dumps(massage)
+abc = {'ItemValue5': True}
 if __name__ == "__main__":
     analyze= ClassMqtt()
     # analyze.analyze_topic('Test', massage)
-    analyze.publishmqtt('Test', massageJson)
+    analyze.publishmqtt('Test', abc)

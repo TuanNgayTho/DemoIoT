@@ -5,7 +5,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse
-import ClassMqtt
+from ClassMqtt import ClassMqtt
 import json
 from random import randint
 
@@ -32,9 +32,11 @@ class homepage(View):
 def home(request):
     if request.method == "POST":
         data = json.loads(request.body)
-        float_number = float(data['number'])
-        print(float_number, "tuan dep trai")
-        return JsonResponse({'float': f'you got: {float_number}'})
+        # abc = data['number']
+        sendMqtt = ClassMqtt()
+        sendMqtt.publishmqtt('Test', data)
+        print(data)
+        return JsonResponse(data)
     if request.method == "GET":
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
             number = randint(1, 10)
