@@ -34,7 +34,7 @@ async function getFloatNumber(){
 
 //timer
 async function timer(){
-    let time = parseFloat(document.getElementById('timer').value);
+    let time = parseFloat(document.getElementById('ItemValue4').value);
     let data = await makeRequest('/home', method='post', body=JSON.stringify({"ItemValue4":time}))
     console.log(await data)
    }
@@ -43,12 +43,7 @@ async function timer(){
 async function bulbToggle(){
     let bulb = document.getElementById('lightbulb');
     let switchLight = document.getElementById('switch1').checked;
-    let number = switchLight
+    let number =  new String(switchLight)
     let data = await makeRequest('/home', method='post', body=JSON.stringify({"ItemValue5":number}))
     console.log(await data)
-    if(switchLight == true){
-        bulb.src = 'static/images/lighton.jpg';
-    } else {
-        bulb.src = 'static/images/lightoff.jpg'
-    }
 }

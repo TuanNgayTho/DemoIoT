@@ -6,16 +6,28 @@ import paho.mqtt.client as mqtt
 from ClassMqtt import ClassMqtt
 import threading
 import json
+from MQTT_subscribe import MyMQTTClass
+
 
 channel_layer = get_channel_layer()
 status = 0
 
 @shared_task
 def get_joke():
-    url = 'https://api.chucknorris.io/jokes/random'
-    responce = requests.get(url).json()
-    joke = responce["value"]
-    async_to_sync(channel_layer.group_send)('Led', {'type': 'send_jokes','text': joke} )
+    # url = 'https://api.chucknorris.io/jokes/random'
+    # responce = requests.get(url).json()
+    # joke = responce["value"]
+    response = MyMQTTClass()
+    model = response.run()
+    if model != '':
+        print(model['d'])
+    else:
+        model = {
+                "d":{
+                "model":"Disconnect"
+                },"ts":""
+                }
+    async_to_sync(channel_layer.group_send)('Led', {'type': 'send_jokes','text': model['d']} )
     # async_to_sync(channel_layer.group_send)('Mqtt', {'type': 'send_mqtt', 'text': mqtt_message})
 @shared_task
 def mpqtt_message():
@@ -25,7 +37,6 @@ def mpqtt_message():
             print("rc: " + str(rc))
             global status
             status = 1
-
 
         def on_connect_fail(self, mqttc, obj):
             print("Connect failed")

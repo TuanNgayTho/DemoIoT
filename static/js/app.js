@@ -12,9 +12,17 @@ function tuanthegioi()
 //websocket
 var socket = new WebSocket('ws://localhost:8000/ws/Led/');
 socket.onmessage = function(event){
-var joke = event.data;
-console.log("Message from server ", event.data);
-document.querySelector('#jokes').innerText = joke;
+var Status = JSON.parse(event.data);
+let icon = document.getElementById('icon');
+console.log("Message from server ", Status.model);
+
+if (Status.model == "GT070E"){
+    icon.style = 'font-size: 1.8em; color: lightgreen;';
+}else {
+    icon.style = 'font-size: 1.8em; color: black;';
+}
+
+document.querySelector('#jokes').innerText = Status;
 }
 
 var socket1 = new WebSocket('ws://localhost:8000/ws/Mqtt/');
@@ -23,10 +31,25 @@ const mqtt = event.data;
 console.log(event.data);
 document.querySelector('#mqtt').innerText = mqtt;
 
-const massage = JSON.parse(mqtt)
-for (let x in massage) {
-    console.log(massage[x]);
-    document.querySelector('#'+x).innerText = massage[x];
+const message = JSON.parse(mqtt)
+
+let bulb = document.getElementById('lightbulb');
+let switchLight = document.getElementById('switch1');
+if(message.ItemValue5 == "true"){
+    switchLight.checked = true;
+    bulb.src = 'static/images/lighton.jpg';
+} else {
+    switchLight.checked = false;
+    bulb.src = 'static/images/lightoff.jpg';
+}
+
+for (let x in message) {
+    console.log(message[x]);
+    if(x == "ItemValue4"){
+    document.querySelector('#'+x).value = message[x];
+    }else {
+    document.querySelector('#'+x).innerText = message[x];
+    };
     }
 }
 //websocket end block

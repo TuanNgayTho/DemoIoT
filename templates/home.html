@@ -42,7 +42,7 @@
             <br>
             <div class="d-flex justify-content-between">
                 <h4 id="textbox">GT070E</h4>
-                <div style="font-size: 1.8em; color: lightgreen;">
+                <div id="icon" style="font-size: 1.8em; color: black;">
                     <ion-icon name="desktop-outline"></ion-icon>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                             <button class="custom-btn btn-4" onclick="getNumber()"><span>Bật</span></button>
                             <button class="custom-btn btn-5" onclick="getFloatNumber()"><span>Tắt</span></button>
                         </div>
-                        <div><input type="number" class="input-group mt-2" id="timer" placeholder=" Timer(s)" name="timer" onchange="timer()"></div>
+                        <div><input type="number" class="input-group mt-2" id="ItemValue4" placeholder=" Timer(s)" name="timer" onchange="timer()"></div>
                     </div>
                     <img src="static/images/lightoff.jpg" class="img-fluid mx-auto d-block mt-5" alt="Cinque Terre"
                          width="50" height="80">
@@ -117,6 +117,9 @@
     <button class="custom-btn btn-16">Read More</button>
 </div>
 <div class="container p-5 my-5 bg-dark text-white">
+    <h1 id="ItemValue5"></h1>
+</div>
+<div class="container p-5 my-5 bg-dark text-white">
     <h1 id="jokes"></h1>
 </div>
 <div class="container p-5 my-5 bg-dark text-white">
@@ -130,9 +133,6 @@
 </div>
 <div class="container p-5 my-5 bg-dark text-white">
     <h1 id="ItemValue3"></h1>
-</div>
-<div class="container p-5 my-5 bg-dark text-white">
-    <h1 id="ItemValue4"></h1>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

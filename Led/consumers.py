@@ -11,7 +11,7 @@ class JokesConsumer(AsyncWebsocketConsumer):
 
     async def send_jokes(self,event):
         text_message = event['text']
-        await self.send(text_message)
+        await self.send(json.dumps(text_message))
 
 
 

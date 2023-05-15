@@ -10,7 +10,7 @@ app.config_from_object('django.conf:settings', namespace='CElERY')
 app.conf.beat_schedule = {
     'get_joke_3s': {
         'task': 'Led.tasks.get_joke',
-        'schedule': 3.0
+        'schedule': 10.0
     },
     'get_mqtt_3s': {
             'task': 'Led.tasks.mpqtt_message',

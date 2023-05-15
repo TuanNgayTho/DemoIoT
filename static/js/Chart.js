@@ -53,7 +53,6 @@ var myChart = new Chart(ctx, graphData);
 
 socket2.onmessage = function(e){
     var djangoData = JSON.parse(e.data);
-    console.log(djangoData.ItemValue2);
 
     var newGraphData = graphData.data.datasets[0].data;
     newGraphData.shift();
