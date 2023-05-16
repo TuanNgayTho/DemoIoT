@@ -54,19 +54,26 @@ var myChart = new Chart(ctx, graphData);
 socket2.onmessage = function(e){
     var djangoData = JSON.parse(e.data);
 
-    var newGraphData = graphData.data.datasets[0].data;
-    newGraphData.shift();
-    newGraphData.push(djangoData.ItemValue2);
-
-    graphData.data.datasets[0].data = newGraphData;
     if (djangoData.ItemValue2 !== undefined) {
+        var newGraphData1 = graphData.data.datasets[1].data;
+        newGraphData1.shift();
+        newGraphData1.push(djangoData.ItemValue2);
+        graphData.data.datasets[1].data = newGraphData1;
         myChart.update();
+
         document.querySelector('#doam').innerText = djangoData.ItemValue2 + " %"
         };
+
     if (djangoData.ItemValue3 !== undefined) {
+        var newGraphData = graphData.data.datasets[0].data;
+        newGraphData.shift();
+        newGraphData.push(djangoData.ItemValue3);
+        graphData.data.datasets[0].data = newGraphData;
         myChart.update();
+
         document.querySelector('#nhietdo').innerText = djangoData.ItemValue3 + " °C"
         };
+
     if (djangoData.ItemValue1 !== undefined) {
         document.querySelector('#textbox').innerText = djangoData.ItemValue1
         };

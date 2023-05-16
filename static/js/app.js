@@ -22,7 +22,7 @@ if (Status.model == "GT070E"){
     icon.style = 'font-size: 1.8em; color: black;';
 }
 
-document.querySelector('#jokes').innerText = Status;
+document.querySelector('#textbox').innerText = Status.model;
 }
 
 var socket1 = new WebSocket('ws://localhost:8000/ws/Mqtt/');
