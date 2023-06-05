@@ -84,6 +84,27 @@ socket2.onmessage = function(e){
 // chart 2
 const date = ['2023-05-08', '2023-05-09', '2023-05-10', '2023-05-11', '2023-05-12', '2023-05-13','2023-05-14'];
 const dataPoint = [65, 59, 80, 81, 56, 55, 40];
+
+async function abc(){
+    const startDate = document.getElementById('startdate').value;
+    const endDate= document.getElementById('enddate').value;
+    let data = await makeRequest('/api/data', method='post', body=JSON.stringify({"StartDate":startDate, "EndDate":endDate,}))
+    console.log(await data)
+
+
+    let person = await data;
+
+    for (let x in person) {
+        date[x] = person[x].joindate;
+        dataPoint[x] = person[x].price;
+    }
+    console.log(date)
+    console.log(dataPoint)
+    chartDate.update();
+}
+
+abc();
+
 const data = {
   labels: date,
   datasets: [{
@@ -135,8 +156,8 @@ const chartDate = new Chart(chartBar,config);
 function filterData(){
     const date2 = [...date];
     console.log(date2);
-    const startTime = document.getElementById('startdate');
-    const endTime = document.getElementById('enddate');
+    let startTime = document.getElementById('startdate');
+    let endTime = document.getElementById('enddate');
 
     // get index number in array
     const indexStartDate = date2.indexOf(startTime.value);

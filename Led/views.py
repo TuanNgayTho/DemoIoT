@@ -8,6 +8,11 @@ from django.http import HttpResponse, JsonResponse
 from ClassMqtt import ClassMqtt
 import json
 from random import randint
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import data
+from .serializers import getAllData
 
 # Create your views here.
 def index(request):
@@ -62,3 +67,19 @@ def loginpage(request):
 def logoutpage(request):
     logout(request)
     return redirect('/login')
+
+class getAllDataAPIVIEW(APIView):
+    def get(self, request):
+        list_Data = data.objects.all()
+        mydata = getAllData(list_Data, many=True)
+        return Response(data= mydata.data, status=status.HTTP_200_OK)
+    def post(self, request):
+        # date = json.loads(request.data)
+        date = request.data
+        startDate = date['StartDate']
+        endDate = date['EndDate']
+        print(startDate)
+        print(endDate)
+        list_Data = data.objects.raw('SELECT * FROM led_data WHERE joindate BETWEEN "'+startDate+'" AND "'+endDate+'" ;')
+        mydata = getAllData(list_Data, many=True)
+        return Response(data= mydata.data, status=status.HTTP_200_OK)

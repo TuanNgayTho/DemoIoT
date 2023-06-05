@@ -2,3 +2,4 @@ Django == 4.0.2
 celery[redis] == 5.2.7
 channels[daphne] == 4.0.0
 channels-redis == 4.1.0
+djangorestframework == 3.13.1

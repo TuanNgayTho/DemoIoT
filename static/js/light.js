@@ -21,14 +21,14 @@ async function makeRequest(url, method, body){
 
 //button on
 async function getNumber(){
-    const data = await makeRequest('/home', 'get')
+    const data = await makeRequest('/home', method='post', body=JSON.stringify({light:true}))
     console.log(await data)
 }
 
 //botton off
 async function getFloatNumber(){
     let number = 4
-    let data = await makeRequest('/home', method='post', body=JSON.stringify({number:number}))
+    let data = await makeRequest('/home', method='post', body=JSON.stringify({light:false}))
     console.log(await data)
    }
 
