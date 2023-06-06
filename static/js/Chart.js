@@ -82,8 +82,8 @@ socket2.onmessage = function(e){
 
 
 // chart 2
-const date = ['2023-05-08', '2023-05-09', '2023-05-10', '2023-05-11', '2023-05-12', '2023-05-13','2023-05-14'];
-const dataPoint = [65, 59, 80, 81, 56, 55, 40];
+const date = [];
+const dataPoint = [];
 
 async function abc(){
     const startDate = document.getElementById('startdate').value;
@@ -91,8 +91,9 @@ async function abc(){
     let data = await makeRequest('/api/data', method='post', body=JSON.stringify({"StartDate":startDate, "EndDate":endDate,}))
     console.log(await data)
 
-
     let person = await data;
+    date.splice(0,date.length)
+    dataPoint.splice(0,dataPoint.length)
 
     for (let x in person) {
         date[x] = person[x].joindate;
