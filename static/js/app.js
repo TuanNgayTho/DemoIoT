@@ -18,11 +18,11 @@ console.log("Message from server ", Status.model);
 
 if (Status.model == "GT070E"){
     icon.style = 'font-size: 1.8em; color: lightgreen;';
-}else {
+    document.querySelector('#textbox').innerText = Status.model;
+}else if (Status.model == "Disconnect"){
     icon.style = 'font-size: 1.8em; color: black;';
+    document.querySelector('#textbox').innerText = Status.model;
 }
-
-document.querySelector('#textbox').innerText = Status.model;
 }
 
 var socket1 = new WebSocket('ws://localhost:8000/ws/Mqtt/');
@@ -38,18 +38,15 @@ let switchLight = document.getElementById('switch1');
 if(message.ItemValue5 == "true"){
     switchLight.checked = true;
     bulb.src = 'static/images/lighton.jpg';
-} else {
+} else if(message.ItemValue5 == "false") {
     switchLight.checked = false;
     bulb.src = 'static/images/lightoff.jpg';
 }
 
 for (let x in message) {
-    console.log(message[x]);
     if(x == "ItemValue4"){
-    document.querySelector('#'+x).value = message[x];
-    }else {
-    document.querySelector('#'+x).innerText = message[x];
-    };
+        document.querySelector('#'+x).value = message[x];
+    }
     }
 }
 //websocket end block

@@ -74,9 +74,9 @@ socket2.onmessage = function(e){
         document.querySelector('#nhietdo').innerText = djangoData.ItemValue3 + " °C"
         };
 
-    if (djangoData.ItemValue1 !== undefined) {
-        document.querySelector('#textbox').innerText = djangoData.ItemValue1
-        };
+//    if (djangoData.ItemValue1 !== undefined) {
+//        document.querySelector('#textbox').innerText = djangoData.ItemValue1
+//        };
 }
 //chart block end
 

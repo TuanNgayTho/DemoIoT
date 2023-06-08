@@ -86,6 +86,7 @@ class getAllDataAPIVIEW(APIView):
         mydata = getAllData(list_Data, many=True)
         return Response(data= mydata.data, status=status.HTTP_200_OK)
 
+@login_required(login_url="/login")
 def ExPortCSV(request):
     if request.method == "POST":
         startDate = request.POST.get('startdate')
