@@ -3,4 +3,4 @@ from .models import data
 class getAllData(serializers.ModelSerializer):
     class Meta:
         model = data
-        fields = ('id', 'title', 'joindate', 'price')
+        fields = ('id', 'joindate', 'price')

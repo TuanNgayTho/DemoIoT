@@ -86,8 +86,8 @@ const date = [];
 const dataPoint = [];
 
 async function abc(){
-    const startDate = document.getElementById('startdate').value;
-    const endDate= document.getElementById('enddate').value;
+    let startDate = document.getElementById('startdate').value;
+    let endDate= document.getElementById('enddate').value;
     let data = await makeRequest('/api/data', method='post', body=JSON.stringify({"StartDate":startDate, "EndDate":endDate,}))
     console.log(await data)
 

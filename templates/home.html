@@ -6,11 +6,13 @@
             <div class="d-flex justify-content-between">
                 <h4>Bảng Thống Kê</h4>
                 <div>
-                    <input type="date" id="startdate" value="2023-05-08">
-                    <input class="mt-1" type="date" id="enddate" value="2023-05-14">
-                    <button class="custom-btn btn-16" onclick="abc()" style="">Search
-                    <div class="dot"></div>
-                    </button>
+                    <form action="/export" method="post">
+                        {% csrf_token %}
+                        <input type="date" id="startdate" value="2023-05-08" name="startdate">
+                        <input class="" type="date" id="enddate" value="2023-05-14" name="enddate">
+                        <button class="btn" onclick="abc()" style="font-size: 1.5em;"><ion-icon name="search-outline"></ion-icon></button>
+                        <button class="btn" type="submit"><ion-icon name="print-outline" style="font-size: 1.5em;"></ion-icon></button>
+                    </form>
                 </div>
             </div>
             <hr>

@@ -9,4 +9,5 @@ urlpatterns = [
     path('home', views.home, name='home'),
     path('', views.homepage.as_view(), name="homepage"),
     path('api/data', views.getAllDataAPIVIEW.as_view(), name="api-data"),
+    path('export', views.ExPortCSV, name='export'),
 ]

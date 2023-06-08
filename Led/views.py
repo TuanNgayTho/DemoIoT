@@ -13,7 +13,10 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import data
 from .serializers import getAllData
+import csv
 
+
+list_Data = ''
 # Create your views here.
 def index(request):
     return render(request, 'login.html')
@@ -73,13 +76,36 @@ class getAllDataAPIVIEW(APIView):
         list_Data = data.objects.all()
         mydata = getAllData(list_Data, many=True)
         return Response(data= mydata.data, status=status.HTTP_200_OK)
+
     def post(self, request):
         # date = json.loads(request.data)
         date = request.data
         startDate = date['StartDate']
         endDate = date['EndDate']
-        print(startDate)
-        print(endDate)
         list_Data = data.objects.raw('SELECT * FROM led_data WHERE joindate BETWEEN "'+startDate+'" AND "'+endDate+'" ;')
         mydata = getAllData(list_Data, many=True)
         return Response(data= mydata.data, status=status.HTTP_200_OK)
+
+def ExPortCSV(request):
+    if request.method == "POST":
+        startDate = request.POST.get('startdate')
+        endDate = request.POST.get('enddate')
+        list_Data = data.objects.raw('SELECT * FROM led_data WHERE joindate BETWEEN "' + startDate + '" AND "' + endDate + '" ;')
+        mydata = getAllData(list_Data, many=True)
+
+        responce = HttpResponse(content_type='text/csv')
+        writer = csv.writer(responce)
+        writer.writerow(['Value','Date'])
+        for value in list_Data:
+            writer.writerow([value.price, value.joindate])
+        responce['Content-Disposition'] = 'attachment; filename = "ExPortData.csv"'
+        return responce
+
+    if request.method == "GET":
+        responce = HttpResponse(content_type='text/csv')
+        writer = csv.writer(responce)
+        writer.writerow(['Value', 'Date'])
+        for value in data.objects.all().values_list('price','joindate'):
+            writer.writerow(value)
+        responce['Content-Disposition'] = 'attachment; filename = "ExPortData.csv"'
+        return responce
