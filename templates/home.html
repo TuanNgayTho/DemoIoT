@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block Home %}
+{% load static %}
 <div class="row m-2 pt-5">
     <div class="col-md-8">
         <div class="card p-3 mb-3" style="height:516px">
@@ -131,9 +132,6 @@
     <h1 id="jokes"></h1>
 </div>
 <div class="container p-5 my-5 bg-dark text-white">
-    <h1 id="mqtt"></h1>
-</div>
-<div class="container p-5 my-5 bg-dark text-white">
     <h1 id="ItemValue1"></h1>
 </div>
 <div class="container p-5 my-5 bg-dark text-white">
@@ -144,4 +142,8 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'js/app.js' %}"></script>
+<script src="{% static 'js/ajax.js' %}"></script>
+<script src="{% static 'js/light.js' %}"></script>
+<script src="{% static 'js/Chart.js' %}"></script>
 {% endblock %}

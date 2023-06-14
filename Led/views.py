@@ -110,3 +110,7 @@ def ExPortCSV(request):
             writer.writerow(value)
         responce['Content-Disposition'] = 'attachment; filename = "ExPortData.csv"'
         return responce
+
+def dengiaothong(request):
+    context = {}
+    return render(request, "DGT.html", context)

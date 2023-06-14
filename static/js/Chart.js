@@ -53,25 +53,25 @@ var myChart = new Chart(ctx, graphData);
 
 socket2.onmessage = function(e){
     var djangoData = JSON.parse(e.data);
-
-    if (djangoData.ItemValue2 !== undefined) {
+//    console.log(djangoData)
+    if (djangoData.d.ItemValue2 !== undefined) {
         var newGraphData1 = graphData.data.datasets[1].data;
         newGraphData1.shift();
-        newGraphData1.push(djangoData.ItemValue2);
+        newGraphData1.push(djangoData.d.ItemValue2);
         graphData.data.datasets[1].data = newGraphData1;
         myChart.update();
 
-        document.querySelector('#doam').innerText = djangoData.ItemValue2 + " %"
+        document.querySelector('#doam').innerText = djangoData.d.ItemValue2 + " %"
         };
 
-    if (djangoData.ItemValue3 !== undefined) {
+    if (djangoData.d.ItemValue3 !== undefined) {
         var newGraphData = graphData.data.datasets[0].data;
         newGraphData.shift();
-        newGraphData.push(djangoData.ItemValue3);
+        newGraphData.push(djangoData.d.ItemValue3);
         graphData.data.datasets[0].data = newGraphData;
         myChart.update();
 
-        document.querySelector('#nhietdo').innerText = djangoData.ItemValue3 + " °C"
+        document.querySelector('#nhietdo').innerText = djangoData.d.ItemValue3 + " °C"
         };
 
 //    if (djangoData.ItemValue1 !== undefined) {
@@ -89,7 +89,7 @@ async function abc(){
     let startDate = document.getElementById('startdate').value;
     let endDate= document.getElementById('enddate').value;
     let data = await makeRequest('/api/data', method='post', body=JSON.stringify({"StartDate":startDate, "EndDate":endDate,}))
-    console.log(await data)
+//    console.log(await data)
 
     let person = await data;
     date.splice(0,date.length)
@@ -99,8 +99,8 @@ async function abc(){
         date[x] = person[x].joindate;
         dataPoint[x] = person[x].price;
     }
-    console.log(date)
-    console.log(dataPoint)
+//    console.log(date)
+//    console.log(dataPoint)
     chartDate.update();
 }
 
