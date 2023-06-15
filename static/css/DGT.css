@@ -4,6 +4,15 @@
     background-origin: content-box;
     background-position: center;
     background-size: 100% 100%;
-    height: 800px;
+    height: 835px;
     width: 1400px;
+}
+
+.center {
+    margin: auto;
+    padding: 10px;
+}
+.window {
+    height: 95%;
+    width: 95%;
 }

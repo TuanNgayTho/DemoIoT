@@ -1,14 +1,3 @@
-//menu navbar
-function tuanthegioi()
-{
-    var x = document.getElementById("navbar");
-    if (x.className === "globalmenu")
-        {x.className += " tuan";}
-    else
-        {x.className = "globalmenu";}
-}
-//menu navbar end block
-
 //websocket
 var socket = new WebSocket('ws://localhost:8000/ws/Led/');
 socket.onmessage = function(event){
