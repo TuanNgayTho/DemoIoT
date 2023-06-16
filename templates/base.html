@@ -6,9 +6,9 @@
     {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="{% static 'Bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'Bootstrap/js/bootstrap.bundle.js' %}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/switch.css' %}">
@@ -26,7 +26,7 @@
 <!--        <li class="alignright"><a href="{% url 'loginpage:login' %}">Đăng nhập</a></li>-->
         <li class="alignright"><a href="{% url 'loginpage:logout' %}">Đăng xuất</a></li>
         <li class="dropdownicon"><a onclick="tuanthegioi()">&#9776;</a></li>
-        <li class="alignright"><a class="bi bi-person">: {{request.user}}</a></li>
+        <li class="alignright"><a class="bi bi-person">{{request.user}}</a></li>
     </ul>
 </nav>
 

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block DGT %}
+{% load static %}
 <div class="pt-4 mt-4 d-flex justify-content-between"></div>
 
 <div class="mt-4">
@@ -44,4 +45,5 @@
         </div>
     </div>
 </div>
+<script src="{% static 'js/DGT.js' %}"></script>
 {% endblock %}

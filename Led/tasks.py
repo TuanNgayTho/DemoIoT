@@ -58,6 +58,7 @@ def mpqtt_message():
                 async_to_sync(channel_layer.group_send)('Mqtt', {'type': 'send_mqtt', 'text': text})
 
         def run(self):
+            global status
             Toppic = [("Test", 0),("Test1", 0),("Test2", 0)]
             self.connect("103.184.113.154", 1883, 60)
             self.subscribe(Toppic)
@@ -65,9 +66,13 @@ def mpqtt_message():
             rc = 0
             while rc == 0:
                 rc = self.loop()
+            status = 0
             return rc
+
+    mqttc = MyMQTTClass()
+    p1 = threading.Thread(target=mqttc.run, daemon= True, args=(), name="mqtt")
+    print(threading.active_count())
+    print(threading.enumerate())
+    print(p1.is_alive())
     if status == 0:
-        mqttc = MyMQTTClass()
-        # if __name__ == '__main__':
-        p1 = threading.Thread(target=mqttc.run, daemon= True, args=())
         p1.start()
