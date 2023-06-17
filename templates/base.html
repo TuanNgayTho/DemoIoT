@@ -26,7 +26,7 @@
 <!--        <li class="alignright"><a href="{% url 'loginpage:login' %}">Đăng nhập</a></li>-->
         <li class="alignright"><a href="{% url 'loginpage:logout' %}">Đăng xuất</a></li>
         <li class="dropdownicon"><a onclick="tuanthegioi()">&#9776;</a></li>
-        <li class="alignright"><a class="bi bi-person">{{request.user}}</a></li>
+        <li class="alignright"><a class="bi bi-person">:  {{request.user}}</a></li>
     </ul>
 </nav>
 
@@ -52,5 +52,4 @@
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="{% static 'js/base.js' %}"></script>
 </body>
-
 </html>

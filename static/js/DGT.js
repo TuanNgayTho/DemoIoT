@@ -3,7 +3,7 @@ socket1.onmessage = function(event){
     const mqtt = event.data;
 
     const message = JSON.parse(mqtt)
-    console.log(message.d);
+//    console.log(message.d);
 //    if (message.type == "boolean"){
 //        let bulb = document.getElementById('lightbulb');
 //        let switchLight = document.getElementById('switch1');
@@ -18,4 +18,12 @@ socket1.onmessage = function(event){
 //            }
 //        }
 //    }
+}
+
+//Check SRC
+function DGT(){
+    let Light = document.getElementsByClassName("do1");
+    let abc = Light.src;
+    console.log(Light[0].src)
+    console.log(Light[1].src)
 }
