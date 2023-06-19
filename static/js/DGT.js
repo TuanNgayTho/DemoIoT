@@ -3,21 +3,22 @@ socket1.onmessage = function(event){
     const mqtt = event.data;
 
     const message = JSON.parse(mqtt)
-//    console.log(message.d);
-//    if (message.type == "boolean"){
-//        let bulb = document.getElementById('lightbulb');
-//        let switchLight = document.getElementById('switch1');
-//
-//        if (message.d.ItemValue5 !== undefined) {
-//             if(message.d.ItemValue5 == "true"){
-//                switchLight.checked = true;
-//                bulb.src = 'static/images/lighton.jpg';
-//            } else if(message.d.ItemValue5 == "false") {
-//                switchLight.checked = false;
-//                bulb.src = 'static/images/lightoff.jpg';
-//            }
-//        }
-//    }
+    if (message.type == "boolean" & message.topic == "Test2"){
+//        console.log(message.d);
+        for (let name in message.d) {
+            let classLight = document.getElementsByClassName(name);
+            let size = Object.keys(classLight).length;
+            let url = message.d[name]
+            for (let i = 0; i < size; i++) {
+//                console.log(classLight[i].src);
+                if (url == "true") {
+                    classLight[i].src = "static/images/DGT/" + name + "true.png"
+                } else if(url == "false") {
+                    classLight[i].src = "static/images/DGT/" + name + "false.png"
+                }
+            }
+        }
+    }
 }
 
 //Check SRC

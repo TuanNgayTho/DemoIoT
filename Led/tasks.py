@@ -71,8 +71,5 @@ def mpqtt_message():
 
     mqttc = MyMQTTClass()
     p1 = threading.Thread(target=mqttc.run, daemon= True, args=(), name="mqtt")
-    print(threading.active_count())
-    print(threading.enumerate())
-    print(p1.is_alive())
     if status == 0:
         p1.start()
