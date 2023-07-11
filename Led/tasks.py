@@ -7,6 +7,7 @@ from ClassMqtt import ClassMqtt
 import threading
 import json
 from MQTT_subscribe import MyMQTTClass
+import multiprocessing as mp
 
 
 channel_layer = get_channel_layer()
@@ -46,12 +47,12 @@ def mpqtt_message():
         def on_message(self, mqttc, obj, msg):
             # print(msg.topic + " " + str(msg.qos) + " " + str(json.loads(msg.payload)))
             # mqtt_message = json.loads(msg.payload)
-            if msg.topic == 'Test2'or msg.topic == 'Test1':
+            if msg.topic == 'Test2' or msg.topic == 'Test1':
                 text = json.loads(msg.payload)
                 text["type"] = "boolean"
                 text["topic"] = msg.topic
                 async_to_sync(channel_layer.group_send)('Mqtt', {'type': 'send_mqtt', 'text': text})
-            if msg.topic == 'Test':
+            if msg.topic == 'Test' or msg.topic == 'Test3':
                 text = json.loads(msg.payload)
                 text["type"] = "value"
                 text["topic"] = msg.topic
@@ -59,7 +60,7 @@ def mpqtt_message():
 
         def run(self):
             global status
-            Toppic = [("Test", 0),("Test1", 0),("Test2", 0)]
+            Toppic = [("Test", 0),("Test1", 0),("Test2", 0),("Test3", 0)]
             self.connect("103.184.113.154", 1883, 60)
             self.subscribe(Toppic)
 

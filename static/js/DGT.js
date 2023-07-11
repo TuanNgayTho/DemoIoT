@@ -19,6 +19,18 @@ socket1.onmessage = function(event){
             }
         }
     }
+
+    if (message.type == "value" & message.topic == "Test3"){
+        console.log(message.d);
+        for (let name in message.d) {
+            let classname = message.d[name];
+            let items = document.getElementsByClassName(name);
+
+            for (i = 0, len = items.length; i < len; i++) {
+                items[i].innerHTML = classname;
+            }
+        }
+    }
 }
 
 //Check SRC
