@@ -12,6 +12,10 @@ app.conf.beat_schedule = {
         'task': 'Led.tasks.get_joke',
         'schedule': 10.0
     },
+    'insertData': {
+        'task': 'Led.tasks.insertData',
+        'schedule': 7.0
+    },
     'get_mqtt_3s': {
             'task': 'Led.tasks.mpqtt_message',
             'schedule': 60.0
